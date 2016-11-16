@@ -1,0 +1,15 @@
+{
+  "name": "karma-razor-preprocessor",
+  "version": "0.0.1",
+  "description": "A preprocessor for Karma that strips out Razor syntax from .cshtml files to allow integrated scripts to be tested.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "razor",
+    "karma"
+  ],
+  "author": "Andrew Webster <andrew.webster@rocketmail.com> (http://answersicouldntfindanywhereelse.blogspot.com/)",
+  "license": "MIT"
+}
