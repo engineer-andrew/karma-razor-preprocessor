@@ -52,7 +52,11 @@ var createRazorPreprocessor = function(config) {
             }
         }
 
-        newContent = newContent.replace('@WriteJson(Model);', '{}');
+        if (!!config && !!config.replacementDictionary && !!config.replacementDictionary.length) {
+            for (var i = config.replacementDictionary.length; --i >= 0;) {
+                newContent = newContent.replace(config.replacementDictionary[i].searchString, config.replacementDictionary[i].replacementString);
+            }
+        }
 
         done(newContent);
     };
