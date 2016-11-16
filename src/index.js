@@ -20,6 +20,10 @@ function buildNewContents(content, lastEndIndex) {
     return result;
 };
 
+String.prototype.endsWith = function(searchString) {
+  return this.substr(-1 * (searchString.length)) === searchString;
+};
+
 var createRazorPreprocessor = function(config) {
     config = typeof config === 'object' ? config : {};
 
@@ -52,9 +56,17 @@ var createRazorPreprocessor = function(config) {
             }
         }
 
+        var fileName = file.originalPath.substring(file.originalPath.lastIndexOf('/') + 1);
+
         if (!!config && !!config.replacementDictionary && !!config.replacementDictionary.length) {
-            for (var i = config.replacementDictionary.length; --i >= 0;) {
-                newContent = newContent.replace(config.replacementDictionary[i].searchString, config.replacementDictionary[i].replacementString);
+            var match = config.replacementDictionary.filter(function(dictionary) {
+                return dictionary.fileName === fileName;
+            });
+
+            for (var i = match.length; --i >= 0;) {
+                for (var j = match[i].lookups.length; --j >= 0;) {
+                    newContent = newContent.replace(match[i].lookups[j].searchString, match[i].lookups[j].replacementString);
+                }
             }
         }
 
