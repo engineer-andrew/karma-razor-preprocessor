@@ -1,5 +1,5 @@
-function buildNewContents(content, lastEndIndex) {
-    var startIndex = content.indexOf('<script>', lastEndIndex);
+function buildNewContents(content) {
+    var startIndex = content.indexOf('<script>');
     var result = {};
 
     if (startIndex > -1) {
@@ -9,7 +9,6 @@ function buildNewContents(content, lastEndIndex) {
         var remaining = content.substring(endIndex);
 
         result =  {
-            endIndex: endIndex,
             remaining: remaining,
             script: script,
         };
@@ -35,13 +34,11 @@ var createRazorPreprocessor = function(config) {
         file.path = transformPath(file.originalPath);
         
         var newContent = '';
-        var endIndex = 0;
         var contents = content;
         var counter = 0;
         while (true){
-            var result = buildNewContents(contents, endIndex);
+            var result = buildNewContents(contents);
 
-            endIndex = result.endIndex;
             contents = result.remaining;
             counter++;
 
