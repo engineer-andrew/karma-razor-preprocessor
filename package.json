@@ -1,6 +1,6 @@
 {
   "name": "karma-razor-preprocessor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A preprocessor for Karma that strips out Razor syntax from .cshtml files to allow integrated scripts to be tested.",
   "main": "src/index.js",
   "scripts": {
